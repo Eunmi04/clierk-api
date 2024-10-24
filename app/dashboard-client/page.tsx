@@ -2,7 +2,7 @@
 import { useAuth, useUser } from '@clerk/nextjs'
 
 export default function DashboardClient() {
-  const { isLoaded: isLoadedAuth, userId, sessionId, getToken } = useAuth()
+  const { isLoaded: isLoadedAuth, userId, sessionId } = useAuth()
   const { isLoaded: isLoadedUser, isSignedIn, user } = useUser()
 
   if (!isLoadedAuth || !userId) {

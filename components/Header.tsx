@@ -1,7 +1,6 @@
 import {
   SignedIn,
   SignedOut,
-  SignIn,
   SignInButton,
   SignOutButton,
   SignUpButton,
@@ -21,11 +20,20 @@ export default function Header() {
             </Link>
           </div>
           <div className="flex items-center font-bold">
-            <Link href="/repos" className="text-gray-300 hover:text-white mr-4">
-              Repository
-            </Link>
-          </div>
-          <div className="flex items-center font-bold">
+            <div>
+              <Link
+                href="/repos"
+                className="text-gray-300 hover:text-white mr-4"
+              >
+                Repository
+              </Link>
+              <Link
+                href="/courses"
+                className="text-gray-300 hover:text-white mr-4"
+              >
+                Courses
+              </Link>
+            </div>
             <SignedOut>
               <div className="text-gray-300 hover:text-white mr-4 ">
                 <SignInButton />
@@ -34,12 +42,14 @@ export default function Header() {
                 <SignUpButton />
               </div>
             </SignedOut>
+
+            {/*로그인 후 */}
             <SignedIn>
               <Link
                 href="/profile"
                 className="text-gray-300 hover:text-white mr-4"
               >
-                Porfile
+                Profile
               </Link>
               <Link
                 href="/dashboard"
@@ -53,10 +63,10 @@ export default function Header() {
               >
                 DashboardC
               </Link>
-              <div className="text-gray-300 hover:text-white mr-4 ">
+              <div className="text-gray-300 hover:text-white mr-4">
                 <UserButton />
               </div>
-              <div className="text-gray-300 hover:text-white mr-4 ">
+              <div className="text-gray-300 hover:text-white mr-4">
                 <SignOutButton />
               </div>
             </SignedIn>

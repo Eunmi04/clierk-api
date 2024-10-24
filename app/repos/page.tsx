@@ -2,16 +2,19 @@ import Link from 'next/link'
 import React from 'react'
 import { FaStar, FaCodeBranch, FaEye } from 'react-icons/fa'
 
-const username = 'bradtraversy'
-//const username = 'tjwls11'
+//const username = 'bradtraversy'
+const username = 'tjwls11'
+
+interface Repo {
+  id: number
+  name: string
+  description: string | null
+  stargazers_count: number
+  forks_count: number
+  watchers_count: number
+}
 
 export default async function ReposPage() {
-  //1. SSG
-  //const response = await fetch(`https://api.github.com/users/${username}/repos`) //역따옴표쓴다
-
-  // 2.SSR
-  //const response = await fetch(`https://api.github.com/users/${username}/repos`,{cache:'no-store'})
-
   // 3.ISR
   const response = await fetch(
     `https://api.github.com/users/${username}/repos`,
@@ -19,8 +22,7 @@ export default async function ReposPage() {
   )
 
   await new Promise((resolve) => setTimeout(resolve, 1000))
-  const repos = await response.json()
-  //console/log(repos)
+  const repos: Repo[] = await response.json()
 
   return (
     <div>
@@ -29,7 +31,7 @@ export default async function ReposPage() {
       </h2>
 
       <ul>
-        {repos.map((repo: any) => (
+        {repos.map((repo: Repo) => (
           <li key={repo.id} className="bg-gray-100 m-4 p-4 rounded-md">
             <Link href={`/repos/${repo.name}`}>
               <h3 className="text-xl font-bold"> {repo.name}</h3>
@@ -42,7 +44,7 @@ export default async function ReposPage() {
                   <FaCodeBranch /> {repo.forks_count}
                 </span>
                 <span className="flex items-center gap-1">
-                  <FaEye /> {repo.stargazers_count}
+                  <FaEye /> {repo.watchers_count}
                 </span>
               </div>
             </Link>

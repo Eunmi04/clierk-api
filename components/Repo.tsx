@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { resolve } from 'path'
 import React from 'react'
 import { FaCodeBranch, FaStar, FaEye } from 'react-icons/fa'
 
@@ -8,7 +7,7 @@ interface RepoProps {
 }
 
 const Repo: React.FC<RepoProps> = async ({ name }) => {
-  const username = 'bradtraversy'
+  const username = 'tjwls11'
   await new Promise((resolve) => setTimeout(resolve, 1000))
   const response = await fetch(
     `https://api.github.com/repos/${username}/${name}`
